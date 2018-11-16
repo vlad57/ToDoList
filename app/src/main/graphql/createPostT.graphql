@@ -1,9 +1,0 @@
-  mutation creatPostT($title: String!, $content: String!)
-  {
-    createDraft(title: $title, content: $content)
-    {
-      id,
-      title,
-      content
-    }
-  }

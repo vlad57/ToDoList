@@ -1,0 +1,12 @@
+query GetSpecificPostT($id: ID!)
+{
+  getPost(id: $id)
+  {
+    id,
+    title,
+    content,
+    date,
+    color,
+    favoris,
+  }
+}

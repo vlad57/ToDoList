@@ -1,0 +1,7 @@
+  mutation UpdatePostT($id : ID!, $title: String, $content: String, $date: String, $color: String, $favoris: String)
+  {
+    updatePost(id: $id, title: $title, content: $content, date: $date, color: $color, favoris: $favoris)
+    {
+        id
+    }
+  }

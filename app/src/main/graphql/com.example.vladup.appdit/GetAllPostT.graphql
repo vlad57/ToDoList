@@ -1,0 +1,12 @@
+query GetAllPostT
+{
+  posts
+  {
+    id,
+    title,
+    content,
+    date,
+    color,
+    favoris,
+  }
+}

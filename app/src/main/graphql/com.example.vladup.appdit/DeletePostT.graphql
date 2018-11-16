@@ -1,0 +1,7 @@
+  mutation DeletePostT($id: ID!)
+  {
+    deletePost(id: $id)
+    {
+      id
+    }
+  }
