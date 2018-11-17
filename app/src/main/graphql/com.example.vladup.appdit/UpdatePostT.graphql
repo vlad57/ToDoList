@@ -1,4 +1,4 @@
-  mutation UpdatePostT($id : ID!, $title: String, $content: String, $date: String, $color: String, $favoris: String)
+  mutation UpdatePostT($id : ID!, $title: String, $content: String, $date: String, $color: String, $favoris: Boolean)
   {
     updatePost(id: $id, title: $title, content: $content, date: $date, color: $color, favoris: $favoris)
     {

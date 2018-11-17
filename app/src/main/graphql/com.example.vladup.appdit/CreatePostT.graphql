@@ -1,6 +1,6 @@
-  mutation CreatePostT($title: String!, $content: String!)
+  mutation CreatePostT($title: String!, $content: String!, $date: String!, $color: String!, $favoris: Boolean!)
   {
-    createDraft(title: $title, content: $content)
+    createDraft(title: $title, content: $content, date: $date, color: $color, favoris: $favoris)
     {
       id,
       title,
