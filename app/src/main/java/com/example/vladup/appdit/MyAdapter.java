@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.apollographql.apollo.ApolloCall;
@@ -34,6 +36,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public TextView mTextDate;
         public CheckBox mCheckboxFavoris;
         public String IdDBElement;
+        public RelativeLayout itemLayout;
+        public String colorBackground;
         View root;
 
 
@@ -44,6 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mTextContent = (TextView)itemView.findViewById(R.id.contentItem);
             mTextDate = (TextView)itemView.findViewById(R.id.dateItem);
             mCheckboxFavoris = (CheckBox)itemView.findViewById(R.id.favorisItem);
+            itemLayout = (RelativeLayout) itemView.findViewById(R.id.itemLayout);
 
 //            buttonDelete = (Button) v.findViewById(R.id.delete);
             itemView.setOnCreateContextMenuListener(this);
@@ -75,6 +80,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         holder.mTextTitle.setText(mDataset.get(position).getTitle());
         holder.mTextContent.setText(mDataset.get(position).getContent());
+        holder.mTextDate.setText(mDataset.get(position).getDate());
+        holder.itemLayout.setBackgroundColor(Color.parseColor(mDataset.get(position).getColor()));
+        holder.colorBackground = mDataset.get(position).getColor();
         holder.mTextDate.setText(mDataset.get(position).getDate());
         holder.IdDBElement = mDataset.get(position).getId();
 //        holder.buttonDelete = (Button) holder.root.findViewById(R.id.delete);

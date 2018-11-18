@@ -66,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 intent.putExtra(Constantes.ID_KEY, holder.IdDBElement);
                 intent.putExtra(Constantes.TITLE_KEY, holder.mTextTitle.getText().toString());
                 intent.putExtra(Constantes.CONTENT_KEY, holder.mTextContent.getText().toString());
+                intent.putExtra(Constantes.DATE_KEY, holder.mTextDate.getText().toString());
+                intent.putExtra(Constantes.COLOR_KEY, holder.colorBackground);
                 intent.putExtra(Constantes.FAVORIS_KEY, holder.mCheckboxFavoris.isChecked());
                 startActivityForResult(intent, 2);
             }
@@ -83,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
                     model.setId(response.data().posts().get(i).id().toString());
                     model.setTitle(response.data().posts().get(i).title().toString());
                     model.setContent(response.data().posts().get(i).content().toString());
+                    model.setDate(response.data().posts().get(i).date());
+                    model.setColor(response.data().posts().get(i).color());
                     model.setSelected(response.data().posts().get(i).favoris());
                     ListModel2.add(model);
                 }
@@ -94,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                         synchronized (monAdapter){
                             monAdapter.notifyDataSetChanged();
                         }
-
                     }
                 });
             }
@@ -110,11 +113,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK){
             if (requestCode == 1){
-                ListModel.add(new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), "", "", false));
-                //monAdapter.notifyItemInserted();
+                ListModel.add(new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), data.getStringExtra(Constantes.DATE_KEY), data.getStringExtra(Constantes.COLOR_KEY), false));
+                monAdapter.notifyDataSetChanged();
             }
             else if (requestCode == 2) {
-                ListModel.set(data.getExtras().getInt("MAPOSITIONRETOUR"), new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), "", "", data.getExtras().getBoolean(Constantes.FAVORIS_KEY)));
+                ListModel.set(data.getExtras().getInt("MAPOSITIONRETOUR"), new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), data.getStringExtra(Constantes.DATE_KEY), data.getStringExtra(Constantes.COLOR_KEY), data.getExtras().getBoolean(Constantes.FAVORIS_KEY)));
                 monAdapter.notifyItemChanged(data.getExtras().getInt("MAPOSITIONRETOUR"));
             }
         }

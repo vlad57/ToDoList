@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailActivity">
+    android:layout_marginTop="100dp"
+    android:layout_height="300dp"
+    android:layout_marginBottom="7dp">
 
-    <EditText
-        android:id="@+id/titleDetail"
+    <RelativeLayout
+        android:id="@+id/layoutDetail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/contentDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleDetail"
-        app:layout_constraintVertical_bias="0.033" />
+        <EditText
+            android:id="@+id/titleDetail"
+            style="@style/Base.Widget.MaterialComponents.TextInputEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="0dp"
+            android:hint="Titre"
+            android:layout_marginTop="8dp" />
 
-    <Button
-        android:id="@+id/editButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Edit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contentDetail"
-        app:layout_constraintVertical_bias="0.047" />
+        <EditText
+            android:id="@+id/contentDetail"
+            android:inputType="textMultiLine"
+            android:hint="Contenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleDetail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="12dp" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/calendrierDetail"
+            android:hint="Calendrier"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="113dp" />
+
+        <Button
+            android:id="@+id/colorDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calendrierDetail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="-110dp"
+            android:hint="Select color" />
+
+        <Button
+            android:id="@+id/editButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="4dp"
+            android:hint="Edit" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
