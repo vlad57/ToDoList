@@ -24,6 +24,8 @@ import com.apollographql.apollo.exception.ApolloException;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
@@ -115,10 +117,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                             public void onFailure(@NotNull ApolloException e) {
                             }
                         });
-                //Log.e("CHECKBOX", "CHECKBOX" + isChecked);
             }
         });
-
 
   /*      holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override

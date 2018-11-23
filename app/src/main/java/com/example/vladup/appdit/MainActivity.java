@@ -9,8 +9,11 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.apollographql.apollo.ApolloClient;
 import okhttp3.OkHttpClient;
@@ -21,6 +24,8 @@ import com.apollographql.apollo.exception.ApolloException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -72,6 +77,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 2);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.sort_by_done:
+                Collections.sort(ListModel, new Comparator<Model>() {
+                    @Override
+                    public int compare(Model o1, Model o2) {
+                        return Boolean.compare(o2.isSelected(),o1.isSelected());
+                    }
+                });
+                monAdapter.notifyDataSetChanged();
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void getAllPosts(){
