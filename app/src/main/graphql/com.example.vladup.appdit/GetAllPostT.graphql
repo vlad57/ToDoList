@@ -8,5 +8,6 @@ query GetAllPostT
     date,
     color,
     favoris,
+    position,
   }
 }

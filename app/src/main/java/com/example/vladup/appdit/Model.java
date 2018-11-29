@@ -7,20 +7,21 @@ public class Model {
     private String content;
     private String date;
     private String color;
-    //private String favoris;
     private boolean isSelected;
+    private int position;
 
     //Le putain de constructeur de ces morts
     public Model(){
     }
 
-    public Model (String Id, String Title, String Content, String Date, String Color, Boolean isSelected){
+    public Model (String Id, String Title, String Content, String Date, String Color, Boolean isSelected, int Position){
         this.id = Id;
         this.title = Title;
         this.content = Content;
         this.date = Date;
         this.color = Color;
         this.isSelected = isSelected;
+        this.position = Position;
     }
 
     public Model (String Id, String Title, String Content, String Date, String Color){
@@ -37,7 +38,8 @@ public class Model {
     public String getContent(){return this.content;}
     public String getDate(){return this.date;}
     public String getColor(){return this.color;}
-    public boolean isSelected(){return isSelected;}
+    public boolean isSelected(){return this.isSelected;}
+    public int getPosition(){return this.position;}
 
     //Méthodes de setage
     public void setId(String Id){this.id = Id;}
@@ -46,5 +48,6 @@ public class Model {
     public void setDate(String Date){this.date = Date;}
     public void setColor(String Color){this.color = Color;}
     public void setSelected(boolean isSelected){this.isSelected = isSelected;}
+    public void setPosition(int Position){this.position = Position;}
 }
 

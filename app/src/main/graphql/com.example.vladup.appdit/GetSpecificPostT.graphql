@@ -8,5 +8,6 @@ query GetSpecificPostT($id: ID!)
     date,
     color,
     favoris,
+    position,
   }
 }

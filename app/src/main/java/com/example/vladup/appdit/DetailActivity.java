@@ -30,19 +30,13 @@ public class DetailActivity extends AppCompatActivity {
 
     private String id_element;
     private int position;
+    private int posinlist;
     private boolean isCheckedD;
     static String getColorDetail;
     Button calendrierDetail;
-    private DatePicker datePicker;
-    private Calendar calendar;
     private int defaultColorR;
     private int defaultColorG;
     private int defaultColorB;
-    static final int DATE_DIALOG_ID = 999;
-
-    private int myear;
-    private int mmonth;
-    private int mday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +50,7 @@ public class DetailActivity extends AppCompatActivity {
         Button editButton = (Button) findViewById(R.id.editButton);
 
         position = getIntent().getExtras().getInt("MAPOSITION");
+        posinlist = getIntent().getExtras().getInt("POSINLIST");
         id_element = getIntent().getStringExtra(Constantes.ID_KEY);
         titleDetail.setText(getIntent().getStringExtra(Constantes.TITLE_KEY));
         contentDetail.setText(getIntent().getStringExtra(Constantes.CONTENT_KEY));
@@ -116,12 +111,15 @@ public class DetailActivity extends AppCompatActivity {
                         .title(titleDetail.getText().toString())
                         .content(contentDetail.getText().toString())
                         .date(calendrierDetail.getText().toString())
-                        .color(getColorDetail).build())
+                        .color(getColorDetail)
+                        .position(position)
+                        .build())
                         .enqueue(new ApolloCall.Callback<UpdatePostTMutation.Data>() {
                             @Override
                             public void onResponse(@NotNull Response<UpdatePostTMutation.Data> response) {
                                 Intent intent = new Intent(Intent.ACTION_VIEW);
                                 intent.putExtra("MAPOSITIONRETOUR", position);
+                                intent.putExtra("POSINLIST", posinlist);
                                 intent.putExtra(Constantes.ID_KEY, id_element);
                                 intent.putExtra(Constantes.TITLE_KEY, titleDetail.getText().toString());
                                 intent.putExtra(Constantes.CONTENT_KEY, contentDetail.getText().toString());

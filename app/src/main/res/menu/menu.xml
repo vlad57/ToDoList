@@ -8,4 +8,14 @@
                 android:title="Done" />
         </menu>
     </item>
+    <item android:id="@+id/validateList"
+        app:showAsAction="always"
+        android:title=""
+        android:icon="@drawable/valide">
+    </item>
+    <item android:id="@+id/cancelList"
+        app:showAsAction="always"
+        android:title=""
+        android:icon="@drawable/cancel">
+    </item>
 </menu>
