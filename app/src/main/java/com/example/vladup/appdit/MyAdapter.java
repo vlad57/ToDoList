@@ -33,7 +33,6 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public List<Model> mDataset;
-    public Boolean isChekable;
     private static ClickListener clickListener;
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -51,7 +50,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public MyViewHolder(View v) {
             super(v);
             root = v;
-            //isChekable = true;
             mTextTitle = (TextView)itemView.findViewById(R.id.titleItem);
             mTextContent = (TextView)itemView.findViewById(R.id.contentItem);
             mTextDate = (TextView)itemView.findViewById(R.id.dateItem);
@@ -98,7 +96,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         //mDataset.get(position).setPosition(position);
 //        holder.buttonDelete = (Button) holder.root.findViewById(R.id.delete);
 
-
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +114,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     MyApolloClient.getMyApolloClient().mutate(
                             UpdatePostTMutation.builder()
                                     .id(mDataset.get(holder.getAdapterPosition()).getId())
-                                    .position(mDataset.get(position).getPosition())
+                                    //.position(mDataset.get(position).getPosition())
                                     .favoris(isChecked).build())
                             .enqueue(new ApolloCall.Callback<UpdatePostTMutation.Data>() {
                                 @Override
