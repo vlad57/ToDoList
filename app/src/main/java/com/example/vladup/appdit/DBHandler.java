@@ -124,13 +124,13 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteContact(String Id) {
+    public void deleteNotif(String IdNotif) {
         SQLiteDatabase db = this.getWritableDatabase();
-        int newID = Integer.parseInt(Id);
+        //int newID = Integer.parseInt(Id);
 
-        db.delete(DB_TABLE, COL_ID + " = ?",
+        db.delete(DB_TABLE, COL_IDTASK + " = ?",
                 new String[]{
-                        Id
+                        IdNotif
                 });
         db.close();
     }

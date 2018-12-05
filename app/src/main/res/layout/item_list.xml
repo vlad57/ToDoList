@@ -13,6 +13,7 @@
 
         <TextView
             android:id="@+id/titleItem"
+            android:textStyle="bold|italic"
             android:layout_width="223dp"
             android:layout_height="29dp"
             android:hint="Title" />
@@ -29,6 +30,7 @@
 
         <TextView
             android:id="@+id/dateItem"
+            android:textStyle="bold|italic"
             android:layout_width="159dp"
             android:layout_height="29dp"
             android:layout_alignParentEnd="true"

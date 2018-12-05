@@ -72,11 +72,11 @@ public class CreateActivity extends AppCompatActivity {
         myCalendar = Calendar.getInstance();
         final Button colorCreate = (Button) findViewById(R.id.colorCreate);
         Button createButton = (Button) findViewById(R.id.createButton);
+        Button cancelButton = (Button) findViewById(R.id.cancelCreate);
         newPos = getIntent().getExtras().getInt("NEWPOS");
         myDB = new DBHandler(this);
         newIDNotif = String.valueOf(myDB.getMaxIdNotif() + 1);
 
-        Log.e("IDNOTIF", "IDNOTIF : " + myDB.getMaxIdNotif());
 
         defaultColorR = 255;
         defaultColorG = 255;
@@ -146,7 +146,7 @@ public class CreateActivity extends AppCompatActivity {
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (checkFields(titleCreate.getText().toString(), contentCreate.getText().toString(), calendrierCreate.getText().toString(), timeCreate.getText().toString())){
+                if (checkFields(titleCreate.getText().toString(), contentCreate.getText().toString(), calendrierCreate.getText().toString())){
                     MyApolloClient.getMyApolloClient().mutate(
                             CreatePostTMutation.builder()
                                     .title(titleCreate.getText().toString())
@@ -166,7 +166,6 @@ public class CreateActivity extends AppCompatActivity {
                                     intent.putExtra(Constantes.DATE_KEY, calendrierCreate.getText().toString());
                                     intent.putExtra(Constantes.COLOR_KEY, retourColor);
                                     intent.putExtra("NEWPOSRETOUR", newPos);
-                                    Log.e("SAMER", "POSITION : " + response.data().createDraft().id);
 
                                     //CreateNotification
                                     if (isNotif == 1) {
@@ -195,6 +194,13 @@ public class CreateActivity extends AppCompatActivity {
                 }
             }
         });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     TimePickerDialog.OnTimeSetListener onStartTimeListener = new TimePickerDialog.OnTimeSetListener() {
@@ -221,7 +227,7 @@ public class CreateActivity extends AppCompatActivity {
     }
 
 
-    private Boolean checkFields(String title, String contenu, String date, String time){
+    private Boolean checkFields(String title, String contenu, String date){
         if (title.isEmpty()){
             Toast.makeText(CreateActivity.this, "Complete the title.", Toast.LENGTH_LONG).show();
             return false;
@@ -234,11 +240,6 @@ public class CreateActivity extends AppCompatActivity {
             Toast.makeText(CreateActivity.this, "Choose the date.", Toast.LENGTH_LONG).show();
             return false;
         }
-        if (time.isEmpty()){
-            Toast.makeText(CreateActivity.this, "Choose the time.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-
         return true;
     }
 

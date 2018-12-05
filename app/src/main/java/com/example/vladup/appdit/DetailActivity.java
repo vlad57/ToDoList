@@ -74,6 +74,7 @@ public class DetailActivity extends AppCompatActivity {
         notifDetail = (Switch) findViewById(R.id.notifDetail);
         final Button colorDetail = (Button) findViewById(R.id.colorDetail);
         Button editButton = (Button) findViewById(R.id.editButton);
+        Button cancelButton = (Button) findViewById(R.id.cancelDetail);
         myDB = new DBHandler(this);
 
         position = getIntent().getExtras().getInt("MAPOSITION");
@@ -84,7 +85,6 @@ public class DetailActivity extends AppCompatActivity {
         calendrierDetail.setText(getIntent().getStringExtra(Constantes.DATE_KEY));
         getColorDetail = getIntent().getStringExtra(Constantes.COLOR_KEY);
         isCheckedD = getIntent().getExtras().getBoolean(Constantes.FAVORIS_KEY);
-        Log.e("MONID", "MONID : "+getIntent().getStringExtra(Constantes.ID_KEY));
 
         ListModelNotif = myDB.getSpecificNotif(id_element);
 
@@ -100,7 +100,6 @@ public class DetailActivity extends AppCompatActivity {
             notifDetail.setChecked(true);
             isNotif = 1;
         }
-
 
         defaultColorR = (Color.parseColor(getColorDetail) >> 16) & 0xFF;
         defaultColorG = (Color.parseColor(getColorDetail) >> 8) & 0xFF;
@@ -180,19 +179,17 @@ public class DetailActivity extends AppCompatActivity {
 
                                     //notification
                                     if (isNotif == 1) {
+                                        createNotificationChannel();
                                         SimpleDateFormat spf = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
                                         Date currentTime = Calendar.getInstance().getTime();
                                         try {
                                             Date mDate = spf.parse(convertDate(calendrierDetail.getText().toString() + " " + timeDetail.getText().toString().trim()));
                                             long diff = mDate.getTime() - currentTime.getTime();
                                             if (ListModelNotif.isEmpty()) {
-                                                Log.e("ENTREE CREATE : ", "CREATE");
-                                                Log.e("ENTREE CREATE : ", "DIFFFFF" + convertDate(calendrierDetail.getText().toString() + " " + timeDetail.getText().toString().trim()));
                                                 myDB.addNotif(calendrierDetail.getText().toString(), timeDetail.getText().toString().trim(), IdNotif, String.valueOf(isNotif), id_element);
                                                 scheduleNotification(DetailActivity.this, diff, Integer.valueOf(IdNotif), titleDetail.getText().toString(), contentDetail.getText().toString());
                                             }
                                             else{
-                                                Log.e("ENTREE UPDATE : ", "UPDATE" + Constantes.ID_KEY);
                                                 myDB.updateNotif(calendrierDetail.getText().toString(), timeDetail.getText().toString().trim(), IdNotif, String.valueOf(isNotif), id_element);
                                                 scheduleNotification(DetailActivity.this, diff, Integer.valueOf(IdNotif), titleDetail.getText().toString(), contentDetail.getText().toString());
                                             }
@@ -203,6 +200,7 @@ public class DetailActivity extends AppCompatActivity {
                                     else if (isNotif == 0){
                                         if (!ListModelNotif.isEmpty()) {
                                             scheduleNotification(DetailActivity.this, 0, Integer.valueOf(IdNotif), "Notif deleted", "Notif deleted");
+                                            myDB.deleteNotif(id_element);
                                         }
                                     }
 
@@ -216,6 +214,13 @@ public class DetailActivity extends AppCompatActivity {
                                 }
                             });
                 }
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }

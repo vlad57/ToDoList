@@ -2,8 +2,8 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_marginTop="100dp"
-    android:layout_height="300dp"
+    android:layout_marginTop="50dp"
+    android:layout_height="400dp"
     android:layout_marginBottom="7dp">
 
     <RelativeLayout
@@ -19,28 +19,30 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
-            android:hint="Titre"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:hint="Title" />
 
         <EditText
             android:id="@+id/contentCreate"
-            android:inputType="textMultiLine"
-            android:hint="Contenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titleCreate"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:hint="Content"
+            android:inputType="textMultiLine" />
 
         <Button
+            android:id="@+id/calendrierCreate"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/calendrierCreate"
-            android:hint="Calendrier"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="113dp" />
+            android:layout_marginStart="0dp"
+            android:layout_marginBottom="210dp"
+            android:hint="Calendar" />
 
         <Button
             android:id="@+id/colorCreate"
@@ -48,36 +50,50 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/calendrierCreate"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="-110dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="-200dp"
             android:hint="Select color" />
 
         <Button
             android:id="@+id/timeCreate"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="104dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/calendrierCreate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="-110dp"
+            android:layout_marginTop="-200dp"
             android:hint="Time" />
+
 
         <Switch
             android:id="@+id/notifCreate"
-            android:layout_width="53dp"
-            android:layout_height="16dp"
-            android:layout_alignBaseline="@+id/colorCreate"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="280dp" />
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="103dp"
+            android:hint="Notification" />
 
         <Button
             android:id="@+id/createButton"
-            android:layout_width="match_parent"
+            android:backgroundTint="@color/colorNormal"
+            android:layout_width="191dp"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginBottom="26dp"
             android:hint="Create" />
+
+        <Button
+            android:hint="Cancel"
+            android:id="@+id/cancelCreate"
+            android:backgroundTint="@color/colorCancel"
+            android:layout_width="191dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/createButton"
+            android:layout_toEndOf="@+id/createButton" />
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

@@ -46,7 +46,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         public String colorBackground;
         View root;
 
-
         public MyViewHolder(View v) {
             super(v);
             root = v;
@@ -56,7 +55,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             mCheckboxFavoris = (CheckBox)itemView.findViewById(R.id.favorisItem);
             itemLayout = (RelativeLayout) itemView.findViewById(R.id.itemLayout);
 
-//            buttonDelete = (Button) v.findViewById(R.id.delete);
             itemView.setOnCreateContextMenuListener(this);
         }
 
@@ -93,8 +91,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.mTextDate.setText(mDataset.get(position).getDate());
         holder.IdDBElement = mDataset.get(position).getId();
         holder.maPosition = mDataset.get(position).getPosition();
-        //mDataset.get(position).setPosition(position);
-//        holder.buttonDelete = (Button) holder.root.findViewById(R.id.delete);
 
         holder.root.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,36 +100,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             }
         });
 
-
-            holder.mCheckboxFavoris.setOnCheckedChangeListener(null);
-            holder.mCheckboxFavoris.setChecked(mDataset.get(position).isSelected());
-            holder.mCheckboxFavoris.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    mDataset.get(holder.getAdapterPosition()).setSelected(isChecked);
-                    MyApolloClient.getMyApolloClient().mutate(
-                            UpdatePostTMutation.builder()
-                                    .id(mDataset.get(holder.getAdapterPosition()).getId())
-                                    //.position(mDataset.get(position).getPosition())
-                                    .favoris(isChecked).build())
-                            .enqueue(new ApolloCall.Callback<UpdatePostTMutation.Data>() {
-                                @Override
-                                public void onResponse(@NotNull Response<UpdatePostTMutation.Data> response) {
-                                }
-
-                                @Override
-                                public void onFailure(@NotNull ApolloException e) {
-                                }
-                            });
-                }
-            });
-
-  /*      holder.buttonDelete.setOnClickListener(new View.OnClickListener() {
+        holder.mCheckboxFavoris.setOnCheckedChangeListener(null);
+        holder.mCheckboxFavoris.setChecked(mDataset.get(position).isSelected());
+        holder.mCheckboxFavoris.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onClick(View v) {
-                clickListener.clickDelete(position, holder);
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                mDataset.get(holder.getAdapterPosition()).setSelected(isChecked);
+                MyApolloClient.getMyApolloClient().mutate(
+                        UpdatePostTMutation.builder()
+                                .id(mDataset.get(holder.getAdapterPosition()).getId())
+                                .favoris(isChecked).build())
+                        .enqueue(new ApolloCall.Callback<UpdatePostTMutation.Data>() {
+                            @Override
+                            public void onResponse(@NotNull Response<UpdatePostTMutation.Data> response) {
+                            }
+
+                            @Override
+                            public void onFailure(@NotNull ApolloException e) {
+                            }
+                        });
             }
-        });*/
+        });
     }
 
     @Override
@@ -157,11 +144,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         notifyDataSetChanged();
     }
 
-    public void updateList(List<Model> newList){
-        mDataset = newList;
-        notifyDataSetChanged();
-    }
-
     public void add(int position, Model List){
         mDataset.add(position, List);
         notifyItemInserted(position);
@@ -169,7 +151,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public interface ClickListener {
         void onClick(MyViewHolder holder, int position);
-//        void clickDelete(int position, MyViewHolder holder);
     }
 
 }

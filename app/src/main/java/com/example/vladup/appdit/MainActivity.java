@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
                     intent.putExtra(Constantes.DATE_KEY, holder.mTextDate.getText().toString());
                     intent.putExtra(Constantes.COLOR_KEY, holder.colorBackground);
                     intent.putExtra(Constantes.FAVORIS_KEY, holder.mCheckboxFavoris.isChecked());
-                    Log.e("NUM CLICK: ", "NOM NUM"+ position);
                     startActivityForResult(intent, 2);
                 }
             }
@@ -170,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
             @Override
             public void onResponse(@NotNull Response<GetAllPostTQuery.Data> response) {
                 Model[] array = new Model[response.data().posts().size()];
-                //Log.e("La taille : ", "Lataille : "+array);
                 for (int i = 0; i < response.data().posts().size(); i++){
                     Model model = new Model();
                     model.setId(response.data().posts().get(i).id().toString());
@@ -199,7 +197,6 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
 
             @Override
             public void onFailure(@NotNull ApolloException e) {
-                Log.e("Putain de sarace", "MARCHE PAS");
             }
         });
     }
@@ -232,11 +229,11 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
                             .enqueue(new ApolloCall.Callback<DeletePostTMutation.Data>() {
                                 @Override
                                 public void onResponse(@NotNull Response<DeletePostTMutation.Data> response) {
+                                    myDB.deleteNotif(response.data().deletePost().id);
                                 }
 
                                 @Override
                                 public void onFailure(@NotNull ApolloException e) {
-
                                 }
                             });
                     monAdapter.remove(item.getGroupId());
@@ -262,7 +259,6 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
 
     @Override
     public void itemRemoveOnSwipe(int position) {
-        Log.e("CA MARCHE", "tête de mort");
         monAdapter.remove(position);
     }
 
