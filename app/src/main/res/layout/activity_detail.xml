@@ -19,28 +19,28 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="0dp"
-            android:hint="Titre"
-            android:layout_marginTop="8dp" />
+            android:layout_marginTop="8dp"
+            android:hint="Titre" />
 
         <EditText
             android:id="@+id/contentDetail"
-            android:inputType="textMultiLine"
-            android:hint="Contenu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/titleDetail"
             android:layout_alignParentStart="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:hint="Contenu"
+            android:inputType="textMultiLine" />
 
         <Button
+            android:id="@+id/calendrierDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/calendrierDetail"
-            android:hint="Calendrier"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="113dp" />
+            android:layout_marginBottom="113dp"
+            android:hint="Calendrier" />
 
         <Button
             android:id="@+id/colorDetail"
@@ -51,6 +51,22 @@
             android:layout_marginStart="14dp"
             android:layout_marginTop="-110dp"
             android:hint="Select color" />
+
+        <Button
+            android:id="@+id/timeDetail"
+            android:layout_width="111dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/colorDetail"
+            android:layout_centerHorizontal="true"
+            android:hint="Time" />
+
+        <Switch
+            android:id="@+id/notifDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/colorDetail"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="54dp" />
 
         <Button
             android:id="@+id/editButton"

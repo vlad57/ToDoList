@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
     MenuItem itemValide;
     MenuItem itemCancel;
     Menu myMenu;
+    DBHandler myDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
         setContentView(R.layout.activity_main);
         buttonAdd = (FloatingActionButton) findViewById(R.id.add_task);
 
+        myDB = new DBHandler(this);
         View inflatedView = getLayoutInflater().inflate(R.layout.item_list, null);
         CheckBox favoris = (CheckBox) inflatedView.findViewById(R.id.favorisItem);
         favoris.setVisibility(View.INVISIBLE);
