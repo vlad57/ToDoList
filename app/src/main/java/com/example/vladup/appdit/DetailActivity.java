@@ -48,7 +48,6 @@ public class DetailActivity extends AppCompatActivity {
 
     private String id_element;
     private int position;
-    private int posinlist;
     private boolean isCheckedD;
     static String getColorDetail;
     Button calendrierDetail;
@@ -78,7 +77,6 @@ public class DetailActivity extends AppCompatActivity {
         myDB = new DBHandler(this);
 
         position = getIntent().getExtras().getInt("MAPOSITION");
-        posinlist = getIntent().getExtras().getInt("POSINLIST");
         id_element = getIntent().getStringExtra(Constantes.ID_KEY);
         titleDetail.setText(getIntent().getStringExtra(Constantes.TITLE_KEY));
         contentDetail.setText(getIntent().getStringExtra(Constantes.CONTENT_KEY));
@@ -169,7 +167,6 @@ public class DetailActivity extends AppCompatActivity {
 
                                     //finish
                                     intent.putExtra("MAPOSITIONRETOUR", position);
-                                    intent.putExtra("POSINLIST", posinlist);
                                     intent.putExtra(Constantes.ID_KEY, id_element);
                                     intent.putExtra(Constantes.TITLE_KEY, titleDetail.getText().toString());
                                     intent.putExtra(Constantes.CONTENT_KEY, contentDetail.getText().toString());

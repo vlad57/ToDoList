@@ -77,7 +77,6 @@ public class CreateActivity extends AppCompatActivity {
         myDB = new DBHandler(this);
         newIDNotif = String.valueOf(myDB.getMaxIdNotif() + 1);
 
-
         defaultColorR = 255;
         defaultColorG = 255;
         defaultColorB = 255;

@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
                 else{
                     Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                     intent.putExtra("MAPOSITION", holder.maPosition);
-                    intent.putExtra("POSINLIST", position);
                     intent.putExtra(Constantes.ID_KEY, holder.IdDBElement);
                     intent.putExtra(Constantes.TITLE_KEY, holder.mTextTitle.getText().toString());
                     intent.putExtra(Constantes.CONTENT_KEY, holder.mTextContent.getText().toString());
@@ -205,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK){
             if (requestCode == 1){
-                ListModel.add(new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), data.getStringExtra(Constantes.DATE_KEY), data.getStringExtra(Constantes.COLOR_KEY), false, data.getExtras().getInt("NEWPOS")));
+                ListModel.add(new Model(data.getStringExtra(Constantes.ID_KEY), data.getStringExtra(Constantes.TITLE_KEY), data.getStringExtra(Constantes.CONTENT_KEY), data.getStringExtra(Constantes.DATE_KEY), data.getStringExtra(Constantes.COLOR_KEY), false, data.getExtras().getInt("NEWPOSRETOUR")));
                 monAdapter.notifyDataSetChanged();
             }
             else if (requestCode == 2) {
