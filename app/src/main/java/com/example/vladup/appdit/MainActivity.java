@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
     Boolean isModifiable;
     MenuItem itemValide;
     MenuItem itemCancel;
+    MenuItem sortFavorite;
     Menu myMenu;
     DBHandler myDB;
 
@@ -67,8 +68,8 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
         monAdapter = new MyAdapter(MainActivity.this, ListModel);
 
 
-        ItemTouchHelper.Callback callback = new ItemMoveCallback(this);// create MyItemTouchHelperCallback
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback); // Create ItemTouchHelper and pass with parameter the MyItemTouchHelperCallback
+        ItemTouchHelper.Callback callback = new ItemMoveCallback(this);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(mRecyclerView);
 
         mRecyclerView.setHasFixedSize(true);
@@ -119,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
         inflater.inflate(R.menu.menu, menu);
         itemValide = menu.findItem(R.id.validateList);
         itemCancel = menu.findItem(R.id.cancelList);
+        sortFavorite = menu.findItem(R.id.sort_by_done);
 
         itemValide.setVisible(false);
         itemCancel.setVisible(false);
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
                 isModifiable = true;
                 item.setVisible(false);
                 itemCancel.setVisible(false);
+                sortFavorite.setVisible(true);
                 updatePos();
                 monAdapter.notifyDataSetChanged();
                 break;
@@ -152,6 +155,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
                 isModifiable = true;
                 item.setVisible(false);
                 itemValide.setVisible(false);
+                sortFavorite.setVisible(true);
                 ListModel.clear();
                 getAllPosts();
                 monAdapter.notifyDataSetChanged();
@@ -254,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements CallbackItemTouch
 
         itemCancel.setVisible(true);
         itemValide.setVisible(true);
+        sortFavorite.setVisible(false);
     }
 
     @Override

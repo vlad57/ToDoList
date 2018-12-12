@@ -5,7 +5,7 @@
         android:title="Sort">
         <menu>
             <item android:id="@+id/sort_by_done"
-                android:title="Done" />
+                android:title="Favorite" />
         </menu>
     </item>
     <item android:id="@+id/validateList"
